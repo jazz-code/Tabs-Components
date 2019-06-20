@@ -8,27 +8,30 @@ class TabLink {
     this.data = link.dataset.tab
     
     // Using the custom data attribute get the associated Item element
-    this.itemElement = document.querySelector(`.data[data-tab = '${this.link.dataset.tab}']`);
-    
+    this.itemElement = document.querySelector(`.tabs-link[data-tab='${this.data}']`)
+    //(`.data[data-tab = '${this.link.dataset.tab}']`);
     // Using the Item element, create a new instance of the TabItem class
     this.tabItem = new TabItem(this.itemElement, this);
     
     // Add a click event listener on this instance, calling the select method on click
     this.link.addEventListener('click', () => this.select())
+
+    // console.log(this.itemElement)
   };
 
   select() {
     // Get all of the elements with the tabs-link class
-    const links = document.querySelector('.tabs-link[data-tab') 
+    const links = document.querySelectorAll('.tabs-link') 
 
     // Using a loop or the forEach method remove the 'tabs-link-selected' class from all of the links
-    links.forEach(link => link.classList.remove('.tabs-link-selected'))
+    links.forEach(link => link.classList.remove('tabs-link-selected'))
 
     // Add a class named "tabs-link-selected" to this link
-    this.element = new TabsLinkSelected(this.element) 
+    this.link.classList.add('tabs-link-selected')
     
     // Call the select method on the item associated with this link
-    this.element.select() 
+    this.tabItem.select() 
+
   }
 }
 
@@ -40,12 +43,12 @@ class TabItem {
 
   select() {
     // Select all ".tabs-item" elements from the DOM
-    this.items = document.querySelectorAll('.tabs-item')
+    const items = document.querySelectorAll('.tabs-item')
 
     // Remove the class "tabs-item-selected" from each element
-    items.forEach(item => item.remove(this.tabs-item-selected))
+    items.forEach(item => item.classList.remove('tabs-item-selected'))
     // Add a class named "tabs-item-selected" to this element
-    this.element = new TabsItemSelected(this.element)
+    this.element.classList.add('tabs-items-selcted')
   }
 }
 
